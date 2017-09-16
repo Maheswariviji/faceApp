@@ -1,0 +1,26 @@
+<ng-sidebar-container>
+ 
+      <!-- A sidebar -->
+      <ng-sidebar #sidebar [(opened)]="_opened">
+        <!-- <p>Sidebar contents</p>
+        <div>
+          <h2>sample</h2>
+        </div>
+        <button (click)="sidebar.close()">Close sidebar</button> -->
+      
+<ul class="nav nav-pills nav-stacked">
+  <li class="active"><a href="#">RET</a></li>
+  <li><a [routerLink]="['register']">Register</a></li>
+  <li><a [routerLink]="['compare']">Compare</a></li>
+  <li><a [routerLink]="['report']">Reports</a></li>
+</ul>
+
+
+      </ng-sidebar>
+ 
+    </ng-sidebar-container>
+    
+    <div id="buttons">
+     <!--  <button (click)="sidebar.open()">Open sidebar</button> -->
+      <button (click)="_toggleSidebar()">Toggle sidebar</button>
+    </div> 

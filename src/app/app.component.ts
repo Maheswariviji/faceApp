@@ -7,4 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app works!';
+   public _opened: boolean = false;
+ 
+  public _toggleSidebar() {
+    this._opened = !this._opened;
+  }
+  
+  name:string;
+  constructor() {
+    this.name = 'sidebar';
+  }
+  
 }

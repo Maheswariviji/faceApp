@@ -1,0 +1,78 @@
+<h3 align="center">Register here</h3>
+
+<form [formGroup]="form" (submit)="onRegisterSubmit()">
+<div class="form-group" >
+    <label for="id">ID</label>
+    <div [ngClass]="{'has-error': (form.controls.id.errors && form.controls.id.dirty) || (!usernameValid && form.controls.id.dirty), 'has-success': !form.controls.id.errors && usernameValid}">
+    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-certificate"></i></span>
+    <input type="text" name="id" class="form-control" formControlName="id" placeholder="Enter ID" >
+    </div>
+     <ul class="help-block">
+        <li *ngIf="form.controls.id.errors?.required && form.controls.id.dirty">This field is required</li>
+        <li *ngIf="form.controls.id.errors?.minlength && form.controls.id.dirty || form.controls.id.errors?.maxlength && form.controls.id.dirty ">Minimum characters: 6, Maximum characters: 30</li>
+       <li *ngIf="form.controls.id.errors?.validateid && form.controls.id.dirty">ID must not have any special characters</li> 
+      </ul>
+   </div>
+  </div>
+<div class="form-group" >
+    <label for="FirstName">FirstName</label>
+    <div [ngClass]="{'has-error': (form.controls.FirstName.errors && form.controls.FirstName.dirty) || (!usernameValid && form.controls.FirstName.dirty), 'has-success': !form.controls.FirstName.errors && usernameValid}">
+    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+    <input type="text" name="FirstName" class="form-control" formControlName="FirstName" placeholder="Enter FirstName" > </div>
+     <ul class="help-block">
+        <li *ngIf="form.controls.FirstName.errors?.required && form.controls.FirstName.dirty">This field is required</li>
+        <li *ngIf="form.controls.FirstName.errors?.minlength && form.controls.FirstName.dirty || form.controls.FirstName.errors?.maxlength && form.controls.FirstName.dirty ">Minimum characters: 3, Maximum characters: 15</li>
+        <li *ngIf="form.controls.FirstName.errors?.validateUsername && form.controls.FirstName.dirty">FirstName must not have any special characters</li>
+        <li *ngIf="usernameMessage">{{ usernameMessage }}</li>
+      </ul>
+   </div>
+  </div>
+  <div class="form-group" >
+    <label for="LastName">LastName</label>
+    <div [ngClass]="{'has-error': (form.controls.LastName.errors && form.controls.LastName.dirty) || (!usernameValid && form.controls.LastName.dirty), 'has-success': !form.controls.LastName.errors && usernameValid}">
+    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+    <input type="text" name="LastName" class="form-control" formControlName="LastName" placeholder="Enter LastName" >
+    </div>
+     <ul class="help-block">
+        <li *ngIf="form.controls.LastName.errors?.required && form.controls.LastName.dirty">This field is required</li>
+        <li *ngIf="form.controls.LastName.errors?.minlength && form.controls.LastName.dirty || form.controls.LastName.errors?.maxlength && form.controls.LastName.dirty ">Minimum characters: 3, Maximum characters: 15</li>
+        <li *ngIf="form.controls.LastName.errors?.validatelastname && form.controls.LastName.dirty">LastName must not have any special characters</li>
+        <li *ngIf="usernameMessage">{{ usernameMessage }}</li>
+      </ul>
+   </div>
+  </div>
+  <div class="form-group">
+    <label for="salary">Salary</label>
+    <div [ngClass]="{'has-error': (form.controls.salary.errors && form.controls.salary.dirty) || (!validatesalary && form.controls.salary.dirty), 'has-success': !form.controls.salary.errors && validatesalary}">
+    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
+    <input type="text" class="form-control" placeholder="Enter Salary" name="salary" formControlName="salary"  >
+    </div>
+    <ul class="help-block">
+        <li *ngIf="form.controls.salary.errors?.required && form.controls.salary.dirty">This field is required</li>
+        <li *ngIf="(form.controls.salary.errors?.minlength && form.controls.salary.dirty || form.controls.salary.errors?.maxlength && form.controls.salary.dirty ) && form.controls.salary.dirty">Minimum characters: 5, Maximum characters: 10</li>
+         <li *ngIf="form.controls.salary.errors?.validatesalary && form.controls.salary.dirty">Salary must not have any special characters,alphabets</li>
+      </ul>
+   </div>
+  </div>
+
+<div class="form-group">
+    <label for="Upload">Browse</label>
+    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-folder-open"></i></span>
+    <input   class="form-control" name="file" type="file" (change)="onFileChange($event)" placeholder="Choose a file" id="file" > &nbsp; &nbsp;<span class="takeimg">(or) &nbsp;&nbsp;<a>Take a Photo</a></span>
+    <input type="hidden" name="fileHidden" formControlName="imageInput"/>
+     <p *ngIf="file" >{{file.name}}</p>
+     </div>
+    </div> 
+<!-- <input type="file" formControlName="file" />
+         <p *ngIf="form.controls.file.errors?.required" style="color: red">This field is required!</p> -->
+        <!--<div class="form-group form-inline">
+        <label class="btn btn-secondary btn-file">
+           <input name="file" type="file" (change)="onFileChange($event)">
+           <input type="hidden" name="fileHidden" formControlName="imageInput"/>
+        </label>
+
+        <p *ngIf="file" >{{file.name}}</p>
+      </div> -->
+      <!-- <button type="button" class="btn btn-primary">Upload</button> -->
+  <button [disabled]="!form.valid" type="submit" class="btn btn-primary">Submit</button>
+</form>
